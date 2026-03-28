@@ -57,21 +57,19 @@ export default function Footer() {
                 <a href="#incidents" className="text-white hover:text-neutral-400 transition-colors duration-300 text-sm sm:text-base">Происшествия</a>
               </div>
             </div>
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 sm:gap-0">
+            <div className="flex flex-col items-center gap-4 mt-4 sm:mt-6 border-t border-white/10 pt-6">
               <img
                 src="https://cdn.poehali.dev/projects/a34d25dc-38da-4806-9ecb-435ec42fa899/bucket/d3d8ebcc-0d18-4590-8033-82d417118abb.jpeg"
                 alt="Народный корреспондент"
-                className="h-24 sm:h-32 lg:h-40 w-auto object-contain mt-4 sm:mt-6 lg:mt-10 brightness-0 invert"
+                className="h-32 sm:h-44 lg:h-56 w-auto object-contain brightness-0 invert opacity-90"
               />
-              <div className="text-right flex flex-col gap-1">
-                <p className="text-white/60 text-xs leading-relaxed max-w-xs sm:max-w-sm text-left sm:text-right">
-                  Проект создан на медиаплатформе<br />
-                  <span className="text-white/90 font-medium">РИА «ТЕРРИТОРИЯ ПРАВА» «Н»</span>
+              <div className="flex flex-col sm:flex-row justify-between items-center w-full gap-2 pt-2 border-t border-white/10">
+                <p className="text-white/50 text-xs text-center sm:text-left">
+                  Проект создан на медиаплатформе <span className="text-white/80 font-medium">РИА «ТЕРРИТОРИЯ ПРАВА» «Н»</span>
                 </p>
-                <p className="text-white/50 text-xs">
-                  Свидетельство о регистрации СМИ: ЭЛ ФС 77-76079
+                <p className="text-white/40 text-xs text-center sm:text-right">
+                  Свидетельство СМИ: ЭЛ ФС 77-76079 · {new Date().getFullYear()}
                 </p>
-                <p className="text-white/40 text-xs mt-1">{new Date().getFullYear()} Народный корреспондент</p>
               </div>
             </div>
           </div>
