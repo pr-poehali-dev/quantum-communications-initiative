@@ -42,7 +42,7 @@ export default function Featured() {
           {features.map((f) => (
             <div key={f.title} className="flex gap-3">
               <div className="shrink-0 mt-1">
-                <Icon name={f.icon} size={20} className="text-neutral-800" />
+                <Icon name={f.icon} size={20} className="text-brand" />
               </div>
               <div>
                 <p className="font-semibold text-sm text-neutral-900 mb-1">{f.title}</p>
@@ -51,7 +51,7 @@ export default function Featured() {
             </div>
           ))}
         </div>
-        <button className="bg-black text-white border border-black px-4 py-2 text-sm transition-all duration-300 hover:bg-white hover:text-black cursor-pointer w-fit uppercase tracking-wide">
+        <button className="bg-brand text-white border border-brand px-4 py-2 text-sm transition-all duration-300 hover:bg-brand-light cursor-pointer w-fit uppercase tracking-wide">
           Стать корреспондентом
         </button>
       </div>
