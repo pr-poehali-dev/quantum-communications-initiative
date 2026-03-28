@@ -63,7 +63,16 @@ export default function Footer() {
                 alt="Народный корреспондент"
                 className="h-24 sm:h-32 lg:h-40 w-auto object-contain mt-4 sm:mt-6 lg:mt-10 brightness-0 invert"
               />
-              <p className="text-white text-sm sm:text-base">{new Date().getFullYear()} Народный корреспондент</p>
+              <div className="text-right flex flex-col gap-1">
+                <p className="text-white/60 text-xs leading-relaxed max-w-xs sm:max-w-sm text-left sm:text-right">
+                  Проект создан на медиаплатформе<br />
+                  <span className="text-white/90 font-medium">РИА «ТЕРРИТОРИЯ ПРАВА» «Н»</span>
+                </p>
+                <p className="text-white/50 text-xs">
+                  Свидетельство о регистрации СМИ: ЭЛ ФС 77-76079
+                </p>
+                <p className="text-white/40 text-xs mt-1">{new Date().getFullYear()} Народный корреспондент</p>
+              </div>
             </div>
           </div>
         </div>
