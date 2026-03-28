@@ -5,18 +5,21 @@ import Featured from "@/components/Featured";
 import Promo from "@/components/Promo";
 import Footer from "@/components/Footer";
 import SubmitNewsModal from "@/components/SubmitNewsModal";
+import ApplicationModal from "@/components/ApplicationModal";
 
 const Index = () => {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [newsModalOpen, setNewsModalOpen] = useState(false);
+  const [appModalOpen, setAppModalOpen] = useState(false);
 
   return (
     <main className="min-h-screen">
-      <Header onSubmitNews={() => setModalOpen(true)} />
-      <Hero onSubmitNews={() => setModalOpen(true)} />
-      <Featured onSubmitNews={() => setModalOpen(true)} />
+      <Header onSubmitNews={() => setNewsModalOpen(true)} />
+      <Hero onSubmitNews={() => setNewsModalOpen(true)} />
+      <Featured onSubmitNews={() => setNewsModalOpen(true)} onApply={() => setAppModalOpen(true)} />
       <Promo />
       <Footer />
-      <SubmitNewsModal open={modalOpen} onClose={() => setModalOpen(false)} />
+      <SubmitNewsModal open={newsModalOpen} onClose={() => setNewsModalOpen(false)} />
+      <ApplicationModal open={appModalOpen} onClose={() => setAppModalOpen(false)} />
     </main>
   );
 };

@@ -25,9 +25,10 @@ const features = [
 
 interface FeaturedProps {
   onSubmitNews: () => void;
+  onApply: () => void;
 }
 
-export default function Featured({ onSubmitNews }: FeaturedProps) {
+export default function Featured({ onSubmitNews, onApply }: FeaturedProps) {
   return (
     <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0 bg-white">
       <div className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2">
@@ -55,9 +56,14 @@ export default function Featured({ onSubmitNews }: FeaturedProps) {
             </div>
           ))}
         </div>
-        <button onClick={onSubmitNews} className="bg-brand text-white border border-brand px-4 py-2 text-sm transition-all duration-300 hover:bg-brand-light cursor-pointer w-fit uppercase tracking-wide">
-          Стать корреспондентом
-        </button>
+        <div className="flex gap-3 flex-wrap">
+          <button onClick={onSubmitNews} className="border border-brand text-brand px-4 py-2 text-sm transition-all duration-300 hover:bg-brand hover:text-white cursor-pointer w-fit uppercase tracking-wide">
+            Подать новость
+          </button>
+          <button onClick={onApply} className="bg-brand text-white border border-brand px-4 py-2 text-sm transition-all duration-300 hover:bg-brand-light cursor-pointer w-fit uppercase tracking-wide">
+            Стать корреспондентом
+          </button>
+        </div>
       </div>
     </div>
   );
