@@ -49,11 +49,13 @@ export default function SubmitNewsModal({ open, onClose }: SubmitNewsModalProps)
       <div className="relative bg-white w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto shadow-2xl">
         <div className="bg-brand px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img
-              src="https://cdn.poehali.dev/projects/a34d25dc-38da-4806-9ecb-435ec42fa899/bucket/d3d8ebcc-0d18-4590-8033-82d417118abb.jpeg"
-              alt="Народный корреспондент"
-              className="h-8 w-auto object-contain brightness-0 invert"
-            />
+            <div className="bg-white rounded-sm px-2 py-1">
+              <img
+                src="https://cdn.poehali.dev/projects/a34d25dc-38da-4806-9ecb-435ec42fa899/bucket/ca038e3e-8244-4246-98b5-f3e8a4e992ed.jpeg"
+                alt="Народный корреспондент"
+                className="h-8 w-auto object-contain"
+              />
+            </div>
           </div>
           <button onClick={handleClose} className="text-white/80 hover:text-white transition-colors">
             <Icon name="X" size={20} />
