@@ -1,5 +1,7 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Icon from "@/components/ui/icon";
+import jsPDF from "jspdf";
+import html2canvas from "html2canvas";
 
 interface ApplicationModalProps {
   open: boolean;
@@ -8,6 +10,7 @@ interface ApplicationModalProps {
 
 export default function ApplicationModal({ open, onClose }: ApplicationModalProps) {
   const printRef = useRef<HTMLDivElement>(null);
+  const [downloading, setDownloading] = useState(false);
 
   if (!open) return null;
 
@@ -26,16 +29,49 @@ export default function ApplicationModal({ open, onClose }: ApplicationModalProp
       <style>
         body { font-family: 'Times New Roman', serif; font-size: 14px; margin: 40px; color: #000; line-height: 1.8; }
         h2 { text-align: center; font-size: 16px; margin: 24px 0 16px; }
-        .header-block { text-align: right; margin-bottom: 32px; line-height: 2; }
         ul { margin: 8px 0 16px 24px; }
         li { margin-bottom: 4px; }
-        .footer { margin-top: 40px; }
-        .placeholder { border-bottom: 1px solid #000; display: inline-block; min-width: 200px; }
+        span[style] { border-bottom: 1px solid #000; display: inline-block; min-width: 160px; }
       </style></head>
       <body>${content}</body></html>
     `);
     win.document.close();
     win.print();
+  };
+
+  const handleDownloadPDF = async () => {
+    if (!printRef.current) return;
+    setDownloading(true);
+    try {
+      const canvas = await html2canvas(printRef.current, {
+        scale: 2,
+        useCORS: true,
+        backgroundColor: "#ffffff",
+      });
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const pageW = pdf.internal.pageSize.getWidth();
+      const pageH = pdf.internal.pageSize.getHeight();
+      const margin = 15;
+      const imgW = pageW - margin * 2;
+      const imgH = (canvas.height * imgW) / canvas.width;
+
+      let posY = margin;
+      let remaining = imgH;
+
+      while (remaining > 0) {
+        pdf.addImage(imgData, "PNG", margin, posY, imgW, imgH);
+        remaining -= pageH - margin * 2;
+        if (remaining > 0) {
+          pdf.addPage();
+          posY = margin - (imgH - remaining);
+        }
+      }
+
+      pdf.save("Заявление_Народный_корреспондент.pdf");
+    } finally {
+      setDownloading(false);
+    }
   };
 
   return (
@@ -57,7 +93,7 @@ export default function ApplicationModal({ open, onClose }: ApplicationModalProp
         </div>
 
         <div className="overflow-y-auto flex-1 px-8 py-6">
-          <div ref={printRef}>
+          <div ref={printRef} className="bg-white">
             <div className="text-right text-sm leading-loose mb-8 text-neutral-700">
               <p>Руководителю проекта</p>
               <p>«Народный корреспондент»</p>
@@ -103,7 +139,7 @@ export default function ApplicationModal({ open, onClose }: ApplicationModalProp
             </p>
 
             <div className="flex justify-between items-end mt-10 text-sm">
-              <p>Дата: <span className="text-neutral-500">{today}</span></p>
+              <p>Дата: <span className="text-neutral-600">{today}</span></p>
               <p>Подпись: <span className="border-b border-neutral-800 inline-block min-w-[200px]">&nbsp;</span></p>
             </div>
           </div>
@@ -118,10 +154,18 @@ export default function ApplicationModal({ open, onClose }: ApplicationModalProp
           </button>
           <button
             onClick={handlePrint}
-            className="bg-brand text-white px-5 py-2 text-sm uppercase tracking-wide hover:bg-brand-light transition-colors cursor-pointer flex items-center gap-2"
+            className="border border-brand text-brand px-5 py-2 text-sm uppercase tracking-wide hover:bg-brand hover:text-white transition-colors cursor-pointer flex items-center gap-2"
           >
             <Icon name="Printer" size={16} />
             Распечатать
+          </button>
+          <button
+            onClick={handleDownloadPDF}
+            disabled={downloading}
+            className="bg-brand text-white px-5 py-2 text-sm uppercase tracking-wide hover:bg-brand-light transition-colors cursor-pointer flex items-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          >
+            <Icon name={downloading ? "Loader2" : "Download"} size={16} className={downloading ? "animate-spin" : ""} />
+            {downloading ? "Создаю PDF..." : "Скачать PDF"}
           </button>
         </div>
       </div>
