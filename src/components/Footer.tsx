@@ -58,11 +58,13 @@ export default function Footer() {
               </div>
             </div>
             <div className="flex flex-col items-center gap-4 mt-4 sm:mt-6 border-t border-white/10 pt-6">
-              <img
-                src="https://cdn.poehali.dev/projects/a34d25dc-38da-4806-9ecb-435ec42fa899/bucket/d3d8ebcc-0d18-4590-8033-82d417118abb.jpeg"
-                alt="Народный корреспондент"
-                className="h-32 sm:h-44 lg:h-56 w-auto object-contain brightness-0 invert opacity-90"
-              />
+              <div className="bg-white rounded-sm p-3 sm:p-4">
+                <img
+                  src="https://cdn.poehali.dev/projects/a34d25dc-38da-4806-9ecb-435ec42fa899/bucket/d3d8ebcc-0d18-4590-8033-82d417118abb.jpeg"
+                  alt="Народный корреспондент"
+                  className="h-28 sm:h-40 lg:h-52 w-auto object-contain"
+                />
+              </div>
               <div className="flex flex-col sm:flex-row justify-between items-center w-full gap-2 pt-2 border-t border-white/10">
                 <p className="text-white/50 text-xs text-center sm:text-left">
                   Проект создан на медиаплатформе <span className="text-white/80 font-medium">РИА «ТЕРРИТОРИЯ ПРАВА» «Н»</span>
