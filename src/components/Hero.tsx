@@ -1,7 +1,11 @@
 import { useScroll, useTransform, motion } from "framer-motion";
 import { useRef } from "react";
 
-export default function Hero() {
+interface HeroProps {
+  onSubmitNews: () => void;
+}
+
+export default function Hero({ onSubmitNews }: HeroProps) {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,
@@ -35,7 +39,7 @@ export default function Hero() {
           Делитесь событиями из первых рук. Сообщество проверяет факты, редакция подтверждает — вместе мы строим прозрачную журналистику.
         </p>
         <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="bg-brand text-white px-8 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-brand-light transition-colors duration-300 cursor-pointer">
+          <button onClick={onSubmitNews} className="bg-brand text-white px-8 py-3 text-sm uppercase tracking-wide font-semibold hover:bg-brand-light transition-colors duration-300 cursor-pointer">
             Подать новость
           </button>
           <button className="border border-white text-white px-8 py-3 text-sm uppercase tracking-wide hover:bg-white hover:text-brand transition-all duration-300 cursor-pointer">

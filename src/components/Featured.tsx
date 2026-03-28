@@ -23,7 +23,11 @@ const features = [
   },
 ];
 
-export default function Featured() {
+interface FeaturedProps {
+  onSubmitNews: () => void;
+}
+
+export default function Featured({ onSubmitNews }: FeaturedProps) {
   return (
     <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center min-h-screen px-6 py-12 lg:py-0 bg-white">
       <div className="flex-1 h-[400px] lg:h-[800px] mb-8 lg:mb-0 lg:order-2">
@@ -51,7 +55,7 @@ export default function Featured() {
             </div>
           ))}
         </div>
-        <button className="bg-brand text-white border border-brand px-4 py-2 text-sm transition-all duration-300 hover:bg-brand-light cursor-pointer w-fit uppercase tracking-wide">
+        <button onClick={onSubmitNews} className="bg-brand text-white border border-brand px-4 py-2 text-sm transition-all duration-300 hover:bg-brand-light cursor-pointer w-fit uppercase tracking-wide">
           Стать корреспондентом
         </button>
       </div>

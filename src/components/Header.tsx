@@ -1,8 +1,9 @@
 interface HeaderProps {
   className?: string;
+  onSubmitNews?: () => void;
 }
 
-export default function Header({ className }: HeaderProps) {
+export default function Header({ className, onSubmitNews }: HeaderProps) {
   return (
     <header className={`absolute top-0 left-0 right-0 z-10 p-6 ${className ?? ""}`}>
       <div className="flex justify-between items-center">
@@ -11,19 +12,19 @@ export default function Header({ className }: HeaderProps) {
           alt="Народный корреспондент"
           className="h-10 w-auto object-contain"
         />
-        <nav className="flex gap-8">
+        <nav className="flex gap-8 items-center">
           <a
             href="#about"
             className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm"
           >
             О платформе
           </a>
-          <a
-            href="#contact"
-            className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm"
+          <button
+            onClick={onSubmitNews}
+            className="bg-brand text-white px-4 py-2 text-sm uppercase tracking-wide hover:bg-brand-light transition-colors duration-300 cursor-pointer"
           >
             Подать новость
-          </a>
+          </button>
         </nav>
       </div>
     </header>
