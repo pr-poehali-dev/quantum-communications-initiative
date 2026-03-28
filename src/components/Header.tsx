@@ -1,9 +1,10 @@
 interface HeaderProps {
   className?: string;
   onSubmitNews?: () => void;
+  onAbout?: () => void;
 }
 
-export default function Header({ className, onSubmitNews }: HeaderProps) {
+export default function Header({ className, onSubmitNews, onAbout }: HeaderProps) {
   return (
     <header className={`absolute top-0 left-0 right-0 z-10 ${className ?? ""}`}>
       <div className="bg-white/10 backdrop-blur-sm border-b border-white/10 px-6 py-1.5 text-center">
@@ -18,12 +19,12 @@ export default function Header({ className, onSubmitNews }: HeaderProps) {
           className="h-10 w-auto object-contain"
         />
         <nav className="flex gap-8 items-center">
-          <a
-            href="#about"
-            className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm"
+          <button
+            onClick={onAbout}
+            className="text-white hover:text-neutral-400 transition-colors duration-300 uppercase text-sm cursor-pointer"
           >
-            О платформе
-          </a>
+            О проекте
+          </button>
           <button
             onClick={onSubmitNews}
             className="bg-brand text-white px-4 py-2 text-sm uppercase tracking-wide hover:bg-brand-light transition-colors duration-300 cursor-pointer"
